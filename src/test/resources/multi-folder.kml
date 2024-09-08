@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document>
+        <name>Document name</name>
+        <description>Document description</description>
+        <Style id="line-0288D1-5000-normal">
+            <LineStyle>
+                <color>ffd18802</color>
+                <width>5</width>
+            </LineStyle>
+        </Style>
+        <Style id="line-0288D1-5000-highlight">
+            <LineStyle>
+                <color>ffd18802</color>
+                <width>7.5</width>
+            </LineStyle>
+        </Style>
+        <StyleMap id="line-0288D1-5000">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#line-0288D1-5000-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#line-0288D1-5000-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="line-7CB342-5000-normal">
+            <LineStyle>
+                <color>ff42b37c</color>
+                <width>5</width>
+            </LineStyle>
+        </Style>
+        <Style id="line-7CB342-5000-highlight">
+            <LineStyle>
+                <color>ff42b37c</color>
+                <width>7.5</width>
+            </LineStyle>
+        </Style>
+        <StyleMap id="line-7CB342-5000">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#line-7CB342-5000-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#line-7CB342-5000-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="line-9C27B0-5000-normal">
+            <LineStyle>
+                <color>ffb0279c</color>
+                <width>5</width>
+            </LineStyle>
+        </Style>
+        <Style id="line-9C27B0-5000-highlight">
+            <LineStyle>
+                <color>ffb0279c</color>
+                <width>7.5</width>
+            </LineStyle>
+        </Style>
+        <StyleMap id="line-9C27B0-5000">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#line-9C27B0-5000-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#line-9C27B0-5000-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="line-E65100-5000-normal">
+            <LineStyle>
+                <color>ff0051e6</color>
+                <width>5</width>
+            </LineStyle>
+        </Style>
+        <Style id="line-E65100-5000-highlight">
+            <LineStyle>
+                <color>ff0051e6</color>
+                <width>7.5</width>
+            </LineStyle>
+        </Style>
+        <StyleMap id="line-E65100-5000">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#line-E65100-5000-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#line-E65100-5000-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="line-F48FB1-5000-normal">
+            <LineStyle>
+                <color>ffb18ff4</color>
+                <width>5</width>
+            </LineStyle>
+        </Style>
+        <Style id="line-F48FB1-5000-highlight">
+            <LineStyle>
+                <color>ffb18ff4</color>
+                <width>7.5</width>
+            </LineStyle>
+        </Style>
+        <StyleMap id="line-F48FB1-5000">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#line-F48FB1-5000-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#line-F48FB1-5000-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Folder>
+            <name>Folder 1 name</name>
+            <Placemark>
+                <name>Placemark 1.1 name</name>
+                <description>Placemark 1.1 description</description>
+                <styleUrl>#line-0288D1-5000</styleUrl>
+                <MultiGeometry>
+                    <LineString>
+                        <tessellate>1</tessellate>
+                        <coordinates>
+                            10.84154451,60.60394129,505.221244140625
+                            10.84151841,60.60395429,505.221244140625
+                            10.84150903,60.60393053,505.1340859375
+                            10.841426979,60.603564413,505.6813515625
+                            10.841462477,60.603077438,506.351541992187
+                            10.982359351,60.486358753,309.666269775391
+                            10.983700422,60.486263559,305.434146972656
+                            10.985052147,60.486060378,300.505124755859
+                            10.986417385,60.485958914,296.2122109375
+                            10.987773744,60.486145613,293.076737304688
+                        </coordinates>
+                    </LineString>
+                    <LineString>
+                        <tessellate>1</tessellate>
+                        <coordinates>
+                            10.987773744,60.486145613,293.076737304688
+                            10.98913105,60.48654089,290.230014892578
+                            10.990446092,60.486952925,288.877207275391
+                            10.991594935,60.487179053,288.572727294922
+                            10.99236871,60.48726408,288.759818359375
+                            10.949672146,60.590165481,468.279654785156
+                            10.949018908,60.590885123,468.389481445313
+                            10.948417957,60.591596751,469.262156005859
+                            10.947757419,60.592348363,470.577610107422
+                            10.946995085,60.59310953,471.379355712891
+                        </coordinates>
+                    </LineString>
+                    <LineString>
+                        <tessellate>1</tessellate>
+                        <coordinates>
+                            10.946995085,60.59310953,471.379355712891
+                            10.946209178,60.593871854,469.126523681641
+                            10.945477104,60.59466445,466.796012207031
+                            10.944791639,60.5955194,464.979874511719
+                            10.944099375,60.596430987,465.208707519531
+                            10.927767235,60.60870209,435.484348388672
+                            10.927759955,60.609541941,433.731821533203
+                            10.927805708,60.610095772,433.091361328125
+                            10.92781763,60.61021786,432.927481933594
+                            10.9278318,60.6104059,432.879447265625
+                        </coordinates>
+                    </LineString>
+                </MultiGeometry>
+            </Placemark>
+            <Placemark>
+                <name>Placemark 1.2 name</name>
+                <description>Placemark 1.2 description</description>
+                <styleUrl>#line-0288D1-5000</styleUrl>
+                <MultiGeometry>
+                    <LineString>
+                        <tessellate>1</tessellate>
+                        <coordinates>
+                            10.6315589,60.7658567,267.029837890625
+                            10.631584256,60.765888442,266.723978515625
+                            10.631699047,60.766037357,266.469260498047
+                            10.631730596,60.766321484,266.826151367187
+                            10.631510195,60.766694319,267.911106201172
+                            10.421315845,60.769586905,540.661942382813
+                            10.420730425,60.770147893,540.735978027344
+                            10.420821784,60.770808578,539.180350585938
+                            10.421114833,60.771539727,535.618863769531
+                            10.421106001,60.77229864,530.560038085938
+                        </coordinates>
+                    </LineString>
+                    <LineString>
+                        <tessellate>1</tessellate>
+                        <coordinates>
+                            10.421106001,60.77229864,530.560038085938
+                            10.420662273,60.773067056,524.984891601562
+                            10.420086104,60.773821296,520.682547851563
+                            10.419724804,60.774593314,516.41465234375
+                            10.419752207,60.775378685,512.903202148438
+                            10.41230045,60.792377818,514.513932128906
+                            10.411465927,60.793198629,517.76465234375
+                            10.410916759,60.793747289,519.957987304687
+                            10.41076696,60.79388216,520.3001015625
+                            10.41065234,60.79402631,521.387259765625
+                        </coordinates>
+                    </LineString>
+                </MultiGeometry>
+            </Placemark>
+            <Placemark>
+                <name>Placemark 1.3 name</name>
+                <description>Placemark 1.3 description</description>
+                <styleUrl>#line-0288D1-5000</styleUrl>
+                <LineString>
+                    <tessellate>1</tessellate>
+                    <coordinates>
+                        10.53362554,60.81612983,466.285331054688
+                        10.533782113,60.816334607,467.795877929688
+                        10.534097299,60.816824558,471.893625732422
+                        10.534516399,60.817576646,480.402945800781
+                        10.535086187,60.818290917,491.254514404297
+                        10.582736237,60.816304106,448.7532265625
+                        10.581869177,60.815870313,449.571036621094
+                        10.581253952,60.815468926,448.364640136719
+                        10.58124326,60.81540217,448.057059570313
+                        10.5808439,60.81512979,447.040091796875
+                    </coordinates>
+                </LineString>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Folder 2 name</name>
+            <Placemark>
+                <name>Placemark 2.1 name</name>
+                <description>Placemark 2.1 description</description>
+                <styleUrl>#line-E65100-5000</styleUrl>
+                <LineString>
+                    <tessellate>1</tessellate>
+                    <coordinates>
+                        12.5134921073914,60.2558469772339,250.379
+                        12.511990070343,60.2564692497253,255.546
+                        12.5041365623474,60.2589583396912,267.5
+                        12.5025486946106,60.2591729164124,267.843
+                        12.5021409988403,60.2591729164124,269.036
+                        12.5023341178894,60.2593660354614,269.315
+                        12.5037717819214,60.2602028846741,264.73
+                        12.506046295166,60.2611255645752,265.052
+                        12.5064325332642,60.2614259719849,264.552
+                        12.5064325332642,60.2617907524109,263.239
+                    </coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark>
+                <name>Placemark 2.2 name</name>
+                <description>Placemark 2.2 description</description>
+                <styleUrl>#line-F48FB1-5000</styleUrl>
+                <LineString>
+                    <tessellate>1</tessellate>
+                    <coordinates>
+                        9.28659458644688,61.8972507677972,0
+                        9.28683757781982,61.8972301483154,0
+                        9.28715944290161,61.8972301483154,0
+                        9.28741693496704,61.8972730636597,0
+                        9.28806066513062,61.8974232673645,0
+                        9.28864002227783,61.8976163864136,0
+                        9.28887605667114,61.8977880477905,0
+                        9.28896188735962,61.8978953361511,0
+                        9.28913354873657,61.8981957435608,0
+                        9.28915500640869,61.8982815742493,0
+                    </coordinates>
+                </LineString>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>

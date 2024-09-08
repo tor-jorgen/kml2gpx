@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document>
+        <name>Numedal - Sigdal - Eggedal - Hokksund</name>
+        <description/>
+        <Style id="icon-1899-DB4436-nodesc-normal">
+            <IconStyle>
+                <color>ff3644db</color>
+                <scale>1</scale>
+                <Icon>
+                    <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+                </Icon>
+                <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+            </IconStyle>
+            <LabelStyle>
+                <scale>0</scale>
+            </LabelStyle>
+            <BalloonStyle>
+                <text><![CDATA[<h3>$[name]</h3>]]></text>
+            </BalloonStyle>
+        </Style>
+        <Style id="icon-1899-DB4436-nodesc-highlight">
+            <IconStyle>
+                <color>ff3644db</color>
+                <scale>1</scale>
+                <Icon>
+                    <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+                </Icon>
+                <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+            </IconStyle>
+            <LabelStyle>
+                <scale>1</scale>
+            </LabelStyle>
+            <BalloonStyle>
+                <text><![CDATA[<h3>$[name]</h3>]]></text>
+            </BalloonStyle>
+        </Style>
+        <StyleMap id="icon-1899-DB4436-nodesc">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#icon-1899-DB4436-nodesc-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#icon-1899-DB4436-nodesc-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Style id="line-1267FF-5000-nodesc-normal">
+            <LineStyle>
+                <color>ffff6712</color>
+                <width>5</width>
+            </LineStyle>
+            <BalloonStyle>
+                <text><![CDATA[<h3>$[name]</h3>]]></text>
+            </BalloonStyle>
+        </Style>
+        <Style id="line-1267FF-5000-nodesc-highlight">
+            <LineStyle>
+                <color>ffff6712</color>
+                <width>7.5</width>
+            </LineStyle>
+            <BalloonStyle>
+                <text><![CDATA[<h3>$[name]</h3>]]></text>
+            </BalloonStyle>
+        </Style>
+        <StyleMap id="line-1267FF-5000-nodesc">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#line-1267FF-5000-nodesc-normal</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#line-1267FF-5000-nodesc-highlight</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Folder>
+            <name>Directions from Nipeto, Svene to Vestbyveien 14, 3330 Skotselv, Norway</name>
+            <Placemark>
+                <name>Blestølen Pub og Café, Flesberg</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.4441693,59.7678652,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Skjønne kirke, Rødberg</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        8.9985875,60.2587465,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Sloko bru, Sigdal kommune, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.1899957,60.3197671,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Hamnelia 18, 3359 Eggedal, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.4965085,60.2189947,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Vestsideveien 2, 3535 Krøderen, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.7815606,60.1266842,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Finnerudveien, 3535 Krøderen, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.7876217,60.1034533,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Fv287, 3350 Prestfoss, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.697008,60.0342665,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Torvmyrveien 11, 3330 Skotselv, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.7366331,59.9004618,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Vestbyveien 14, 3330 Skotselv, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.8110728,59.8665038,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Directions from Vestbyveien 14, 3330 Skotselv, Norway to Spikkestad</name>
+            <Placemark>
+                <name>Vestbyveien 14, 3330 Skotselv, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.8110728,59.8665038,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Loesdalsveien 134, 3302 Hokksund, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        9.9180188,59.755443,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Drammensveien 138, 3050 Mjøndalen, Norway</name>
+                <styleUrl>#icon-1899-DB4436-nodesc</styleUrl>
+                <Point>
+                    <coordinates>
+                        10.0525355,59.7516179,0
+                    </coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>
