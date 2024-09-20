@@ -1,19 +1,14 @@
-package org.kmltogpx.model
+package org.kml2gpx.model
 
-import org.kmltogpx.GPX_SCHEMA_LOCATION
-import org.kmltogpx.GPX_XMLNS
-import kotlin.streams.toList
+import org.kml2gpx.GPX_SCHEMA_LOCATION
+import org.kml2gpx.GPX_XMLNS
 
-data class Route(
+data class Root(
     var name: String? = null,
     var description: String? = null,
 ) {
     private val waypoints = mutableListOf<Point>()
     private val tracks = mutableListOf<Track>()
-
-    fun addWaypoint(waypoint: Point) {
-        this.waypoints.add(waypoint)
-    }
 
     fun addWaypoints(waypoints: List<Point>) {
         this.waypoints.addAll(waypoints)
@@ -25,6 +20,8 @@ data class Route(
 
     fun waypoints() = waypoints
 
+    fun tracks() = tracks
+
     fun toGpx() =
         """
         |<?xml version="1.0" standalone="yes"?>
@@ -35,6 +32,7 @@ data class Route(
         |        <name><![CDATA[${name ?: ""}]]></name>
         |        <desc><![CDATA[${description ?: ""}]]></desc>
         |    </metadata>
+        |    ${waypoints.stream().map { it.toGpx() }.toList().joinToString(separator = "\n")}
         |    ${tracks.stream().map { it.toGpx() }.toList().joinToString(separator = "\n")}
         |</gpx>
         """.trimMargin()

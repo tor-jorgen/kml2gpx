@@ -1,8 +1,9 @@
-package org.kmltogpx
+package org.kml2gpx
 
 import org.dom4j.DocumentHelper
 import org.dom4j.io.OutputFormat
 import org.dom4j.io.XMLWriter
+import org.kml2gpx.model.Root
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
@@ -10,10 +11,6 @@ import java.io.StringWriter
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.system.exitProcess
-
-private const val OUTPUT = "OUTPUT"
-private const val VALIDATE = "VALIDATE"
-private const val PRETTIFY = "PRETTIFY"
 
 fun main(args: Array<String>) {
     if (args.isEmpty() || args[0] == "-h" || args[0] == "--help") {
@@ -23,25 +20,15 @@ fun main(args: Array<String>) {
 
     val arguments = parseArguments(args)
     try {
-        convert(
-            kmlPath = args[0],
-            outputPath = arguments[OUTPUT],
-            validate = arguments[VALIDATE] != null,
-            prettify = arguments[PRETTIFY] != null,
-        )
+        convert(arguments)
     } catch (e: Exception) {
         println("KmlToGpx exited because of failure!")
         exitProcess(1)
     }
 }
 
-private fun parseArguments(args: Array<String>): MutableMap<String, String?> {
-    val arguments =
-        mutableMapOf<String, String?>(
-            OUTPUT to null,
-            VALIDATE to null,
-            PRETTIFY to null,
-        )
+private fun parseArguments(args: Array<String>): Arguments {
+    val arguments = Arguments(kmlPath = args[0])
     var skip = false
     for (i in 1..args.size - 1) {
         if (skip) {
@@ -56,14 +43,17 @@ private fun parseArguments(args: Array<String>): MutableMap<String, String?> {
                     help()
                     exitProcess(1)
                 } else {
-                    arguments[OUTPUT] = args[i + 1]
+                    arguments.outputPath = args[i + 1]
                     // Skip next argument, which should be path to output file
                     skip = true
                 }
             }
 
-            "-v", "--validate" -> arguments[VALIDATE] = VALIDATE
-            "-p", "--prettify" -> arguments[PRETTIFY] = PRETTIFY
+            "-t", "--merge-tracks" -> arguments.mergeTracks = true
+            "-f", "--merge-folders" -> arguments.mergeFolders = true
+            "-w", "--waypoints" -> arguments.addWaypoints = true
+            "-v", "--validate" -> arguments.validate = true
+            "-p", "--prettify" -> arguments.prettify = true
 
             else -> {
                 println("ERROR: Invalid argument: ${args[i]}")
@@ -77,15 +67,19 @@ private fun parseArguments(args: Array<String>): MutableMap<String, String?> {
 
 private fun help() {
     println(
-        """Usage: java -jar [path]kmltogpx-<version>-all.jar <KML file> [options]
-           |Run KML to GPX, a util that coverts a KML file to a GPX file.
+        """Usage: java -jar [path]kml2gpx-<version>-all.jar <KML file> [options]
+           |KML 2 GPX, a utility that converts a KML v. 2.2 file to a GPX v. 1.1 file.
+           |
            |
            |Arguments:
-           | KML file: Path to the KML file to convert (with file extension)
+           | KML file                                   Path to the KML file to convert (with file extension)
            | options:
-           |  -o, --output   <path to output file> Write the result to the given file. If not specified, the output will be printed to stdout 
-           |  -v, --validate                       Validate that the output is according to GPX specification
-           |  -p, --prettify                       Prettify the output
+           |  -t, --merge-tracks                        Merge all tracks (Placemarks) in a folder into one track. This will result in one track for each folder. Useful if you had to divide a single track into multiple tracks in the KML file
+           |  -f, --merge-folders                       Merge all tracks (Placemarks) in all folders into one track. This will result in one track
+           |  -w, --add-waypoints                       Add all waypoints to a single list. If not specified, no waypoints will be added
+           |  -o, --output        <path to output file> Write the result to the given file (with file extension). If not specified, the output will be written to the console 
+           |  -v, --validate                            Validate that the output is according to GPX specification
+           |  -p, --prettify                            Prettify the output
         """.trimMargin(),
     )
 }
@@ -98,26 +92,33 @@ private fun assertFileExists(path: String) {
     }
 }
 
-private fun convert(
-    kmlPath: String,
-    outputPath: String? = null,
-    validate: Boolean = false,
-    prettify: Boolean = false,
-) {
-    println("Converting '$kmlPath' from KML to GPX")
-    assertFileExists(kmlPath)
-    val kml = FileInputStream(kmlPath)
-    convert(kml = kml, outputPath = outputPath, validate = validate, prettify = prettify)
+private fun convert(args: Arguments) {
+    println("Converting '${args.kmlPath}' from KML to GPX. Merge tracks: ${args.mergeTracks}, merge folders: ${args.mergeFolders}, add waypoints: ${args.addWaypoints}")
+    assertFileExists(args.kmlPath)
+    val kml = FileInputStream(args.kmlPath)
+    convert(
+        kml = kml,
+        mergeTracks = args.mergeTracks,
+        mergeFolders = args.mergeFolders,
+        addWaypoints = args.addWaypoints,
+        outputPath = args.outputPath,
+        validate = args.validate,
+        prettify = args.prettify
+    )
 }
 
 fun convert(
     kml: InputStream,
+    mergeTracks: Boolean = false,
+    mergeFolders: Boolean = false,
+    addWaypoints: Boolean = false,
     outputPath: String? = null,
     validate: Boolean = false,
     prettify: Boolean = false,
-) {
-    val route = parseKml(kml)
-    var gpx = route.toGpx()
+): Root {
+    val root =
+        parseKml(inputStream = kml, mergeTracks = mergeTracks, mergeFolders = mergeFolders, addWaypoints = addWaypoints)
+    var gpx = root.toGpx()
     if (prettify) {
         gpx = prettify(gpx)
     }
@@ -130,6 +131,7 @@ fun convert(
     } else {
         println(gpx)
     }
+    return root
 }
 
 private fun prettify(xmlString: String) =

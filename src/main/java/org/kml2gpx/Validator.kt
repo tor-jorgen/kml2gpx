@@ -1,4 +1,4 @@
-package org.kmltogpx
+package org.kml2gpx
 
 import java.net.URL
 import javax.xml.XMLConstants
@@ -18,6 +18,6 @@ fun validateGpx(gpx: String) {
         println("* GPX validation: OK")
     } catch (e: Exception) {
         println("* GPX validation: Failed")
-        e.printStackTrace()
+        throw e
     }
 }
