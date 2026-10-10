@@ -1,5 +1,6 @@
 package org.kml2gpx.model
 
+import org.kml2gpx.toCData
 import java.util.*
 
 data class Point(
@@ -41,7 +42,7 @@ data class Point(
         """
         |<${type.gpxName} lat="$latitude" lon="$longitude">
         |    <ele>${elevation ?: ""}</ele>
-        |    <name>${name ?: ""}</name>
+        |    <name>${name.toCData()}</name>
         |</${type.gpxName}>
         """.trimMargin()
 }

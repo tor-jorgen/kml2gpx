@@ -23,7 +23,8 @@ fun main(args: Array<String>) {
         convert(arguments)
     } catch (e: Exception) {
         println("KmlToGpx exited because of failure!")
-        exitProcess(1)
+        throw e
+//        exitProcess(1)
     }
 }
 

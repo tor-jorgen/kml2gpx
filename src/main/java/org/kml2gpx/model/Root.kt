@@ -2,6 +2,7 @@ package org.kml2gpx.model
 
 import org.kml2gpx.GPX_SCHEMA_LOCATION
 import org.kml2gpx.GPX_XMLNS
+import org.kml2gpx.toCData
 
 data class Root(
     var name: String? = null,
@@ -29,8 +30,8 @@ data class Root(
         |     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         |     xsi:schemaLocation="$GPX_XMLNS $GPX_SCHEMA_LOCATION">
         |    <metadata>
-        |        <name><![CDATA[${name ?: ""}]]></name>
-        |        <desc><![CDATA[${description ?: ""}]]></desc>
+        |        <name>${name.toCData()}</name>
+        |        <desc>${description.toCData()}</desc>
         |    </metadata>
         |    ${waypoints.stream().map { it.toGpx() }.toList().joinToString(separator = "\n")}
         |    ${tracks.stream().map { it.toGpx() }.toList().joinToString(separator = "\n")}
