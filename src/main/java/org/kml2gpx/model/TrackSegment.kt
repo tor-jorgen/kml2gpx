@@ -6,10 +6,6 @@ data class TrackSegment(
     var description: String? = null,
     val points: MutableList<Point> = mutableListOf(),
 ) {
-    fun addPoint(point: Point) {
-        this.points.add(point)
-    }
-
     fun addPoints(points: List<Point>) {
         this.points.addAll(points)
     }

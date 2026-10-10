@@ -23,7 +23,8 @@ fun main(args: Array<String>) {
         convert(arguments)
     } catch (e: Exception) {
         println("KmlToGpx exited because of failure!")
-        exitProcess(1)
+        throw e
+//        exitProcess(1)
     }
 }
 
@@ -49,11 +50,25 @@ private fun parseArguments(args: Array<String>): Arguments {
                 }
             }
 
-            "-t", "--merge-tracks" -> arguments.mergeTracks = true
-            "-f", "--merge-folders" -> arguments.mergeFolders = true
-            "-w", "--waypoints" -> arguments.addWaypoints = true
-            "-v", "--validate" -> arguments.validate = true
-            "-p", "--prettify" -> arguments.prettify = true
+            "-t", "--merge-tracks" -> {
+                arguments.mergeTracks = true
+            }
+
+            "-f", "--merge-folders" -> {
+                arguments.mergeFolders = true
+            }
+
+            "-w", "--waypoints" -> {
+                arguments.addWaypoints = true
+            }
+
+            "-v", "--validate" -> {
+                arguments.validate = true
+            }
+
+            "-p", "--prettify" -> {
+                arguments.prettify = true
+            }
 
             else -> {
                 println("ERROR: Invalid argument: ${args[i]}")
@@ -93,7 +108,9 @@ private fun assertFileExists(path: String) {
 }
 
 private fun convert(args: Arguments) {
-    println("Converting '${args.kmlPath}' from KML to GPX. Merge tracks: ${args.mergeTracks}, merge folders: ${args.mergeFolders}, add waypoints: ${args.addWaypoints}")
+    println(
+        "Converting '${args.kmlPath}' from KML to GPX. Merge tracks: ${args.mergeTracks}, merge folders: ${args.mergeFolders}, add waypoints: ${args.addWaypoints}",
+    )
     assertFileExists(args.kmlPath)
     val kml = FileInputStream(args.kmlPath)
     convert(
@@ -103,7 +120,7 @@ private fun convert(args: Arguments) {
         addWaypoints = args.addWaypoints,
         outputPath = args.outputPath,
         validate = args.validate,
-        prettify = args.prettify
+        prettify = args.prettify,
     )
 }
 

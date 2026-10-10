@@ -1,12 +1,12 @@
 pluginManagement {
+    val kotlinVersion: String = providers.gradleProperty("kotlinVersion").get()
+    val shadowVersion: String = providers.gradleProperty("shadowVersion").get()
+    val ktlintVersion: String = providers.gradleProperty("ktlintVersion").get()
     plugins {
-        kotlin("jvm") version "2.0.0"
-        id("com.gradleup.shadow") version "8.3.2"
+        kotlin("jvm") version kotlinVersion
+        id("com.gradleup.shadow") version shadowVersion
+        id("org.jlleitschuh.gradle.ktlint") version ktlintVersion
     }
-}
-
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
 rootProject.name = "kml2gpx"
