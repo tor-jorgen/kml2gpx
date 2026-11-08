@@ -28,7 +28,7 @@ Other elements are ignored.
 
 #### Java
 
-Java 20
+Java 25
 
 ### Build application
 
@@ -50,4 +50,4 @@ Execute the following from the command line to run the application and show the 
 
 E.g.:
 
-    java -jar build/kml2gpx-1.0.1-all.jar
+    java -jar build/libs/kml2gpx-1.0.2-all.jar

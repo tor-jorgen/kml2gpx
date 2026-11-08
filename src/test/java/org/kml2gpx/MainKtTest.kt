@@ -3,178 +3,198 @@ package org.kml2gpx
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
-import org.kml2gpx.model.*
+import org.kml2gpx.model.Point
+import org.kml2gpx.model.PointType
+import org.kml2gpx.model.Root
+import org.kml2gpx.model.Track
+import org.kml2gpx.model.TrackSegment
 
-private val track1 = Track(
-    name = "Folder 1 name - Placemark 1.1 name",
-    number = 1,
-    description = "Placemark 1.1 description",
-    segments = mutableListOf(
-        TrackSegment(
-            number = 1,
-            points = mutableListOf(
-                Point(
-                    longitude = 10.84154451,
-                    latitude = 60.60394129,
-                    elevation = 505.221244140625,
-                    name = "1",
-                    type = PointType.TrackPoint,
+private val track1 =
+    Track(
+        name = "Folder 1 name - Placemark 1.1 name",
+        number = 1,
+        description = "Placemark 1.1 description",
+        segments =
+            mutableListOf(
+                TrackSegment(
+                    number = 1,
+                    points =
+                        mutableListOf(
+                            Point(
+                                longitude = 10.84154451,
+                                latitude = 60.60394129,
+                                elevation = 505.221244140625,
+                                name = "1",
+                                type = PointType.TrackPoint,
+                            ),
+                            Point(
+                                longitude = 10.987773744,
+                                latitude = 60.486145613,
+                                elevation = 293.076737304688,
+                                name = "10",
+                                type = PointType.TrackPoint,
+                            ),
+                        ),
                 ),
-                Point(
-                    longitude = 10.987773744,
-                    latitude = 60.486145613,
-                    elevation = 293.076737304688,
-                    name = "10",
-                    type = PointType.TrackPoint,
+                TrackSegment(
+                    number = 3,
+                    points =
+                        mutableListOf(
+                            Point(
+                                longitude = 10.946995085,
+                                latitude = 60.59310953,
+                                elevation = 471.379355712891,
+                                name = "1",
+                                type = PointType.TrackPoint,
+                            ),
+                            Point(
+                                longitude = 10.9278318,
+                                latitude = 60.6104059,
+                                elevation = 432.879447265625,
+                                name = "10",
+                                type = PointType.TrackPoint,
+                            ),
+                        ),
                 ),
-            )
-        ),
-        TrackSegment(
-            number = 3,
-            points = mutableListOf(
-                Point(
-                    longitude = 10.946995085,
-                    latitude = 60.59310953,
-                    elevation = 471.379355712891,
-                    name = "1",
-                    type = PointType.TrackPoint,
-                ),
-                Point(
-                    longitude = 10.9278318,
-                    latitude = 60.6104059,
-                    elevation = 432.879447265625,
-                    name = "10",
-                    type = PointType.TrackPoint,
-                ),
-            )
-        ),
+            ),
     )
-)
-private val track2 = Track(
-    name = "Folder 1 name - Placemark 1.2 name",
-    number = 2,
-    description = "Placemark 1.2 description",
-    segments = mutableListOf(
-        TrackSegment(
-            number = 1,
-            points = mutableListOf(
-                Point(
-                    longitude = 10.6315589,
-                    latitude = 60.7658567,
-                    elevation = 267.029837890625,
-                    name = "1",
-                    type = PointType.TrackPoint,
+private val track2 =
+    Track(
+        name = "Folder 1 name - Placemark 1.2 name",
+        number = 2,
+        description = "Placemark 1.2 description",
+        segments =
+            mutableListOf(
+                TrackSegment(
+                    number = 1,
+                    points =
+                        mutableListOf(
+                            Point(
+                                longitude = 10.6315589,
+                                latitude = 60.7658567,
+                                elevation = 267.029837890625,
+                                name = "1",
+                                type = PointType.TrackPoint,
+                            ),
+                            Point(
+                                longitude = 10.421106001,
+                                latitude = 60.77229864,
+                                elevation = 530.560038085938,
+                                name = "10",
+                                type = PointType.TrackPoint,
+                            ),
+                        ),
                 ),
-                Point(
-                    longitude = 10.421106001,
-                    latitude = 60.77229864,
-                    elevation = 530.560038085938,
-                    name = "10",
-                    type = PointType.TrackPoint,
+                TrackSegment(
+                    number = 2,
+                    points =
+                        mutableListOf(
+                            Point(
+                                longitude = 10.421106001,
+                                latitude = 60.77229864,
+                                elevation = 530.560038085938,
+                                name = "1",
+                                type = PointType.TrackPoint,
+                            ),
+                            Point(
+                                longitude = 10.41065234,
+                                latitude = 60.79402631,
+                                elevation = 521.387259765625,
+                                name = "10",
+                                type = PointType.TrackPoint,
+                            ),
+                        ),
                 ),
-            )
-        ),
-        TrackSegment(
-            number = 2,
-            points = mutableListOf(
-                Point(
-                    longitude = 10.421106001,
-                    latitude = 60.77229864,
-                    elevation = 530.560038085938,
-                    name = "1",
-                    type = PointType.TrackPoint,
-                ),
-                Point(
-                    longitude = 10.41065234,
-                    latitude = 60.79402631,
-                    elevation = 521.387259765625,
-                    name = "10",
-                    type = PointType.TrackPoint,
-                ),
-            )
-        ),
+            ),
     )
-)
-private val track3 = Track(
-    name = "Folder 1 name - Placemark 1.3 name",
-    number = 3,
-    description = "Placemark 1.3 description",
-    segments = mutableListOf(
-        TrackSegment(
-            number = 1,
-            points = mutableListOf(
-                Point(
-                    longitude = 10.53362554,
-                    latitude = 60.81612983,
-                    elevation = 466.285331054688,
-                    name = "1",
-                    type = PointType.TrackPoint,
+private val track3 =
+    Track(
+        name = "Folder 1 name - Placemark 1.3 name",
+        number = 3,
+        description = "Placemark 1.3 description",
+        segments =
+            mutableListOf(
+                TrackSegment(
+                    number = 1,
+                    points =
+                        mutableListOf(
+                            Point(
+                                longitude = 10.53362554,
+                                latitude = 60.81612983,
+                                elevation = 466.285331054688,
+                                name = "1",
+                                type = PointType.TrackPoint,
+                            ),
+                            Point(
+                                longitude = 10.5808439,
+                                latitude = 60.81512979,
+                                elevation = 447.040091796875,
+                                name = "10",
+                                type = PointType.TrackPoint,
+                            ),
+                        ),
                 ),
-                Point(
-                    longitude = 10.5808439,
-                    latitude = 60.81512979,
-                    elevation = 447.040091796875,
-                    name = "10",
-                    type = PointType.TrackPoint,
-                ),
-            )
-        ),
+            ),
     )
-)
-private val track4 = Track(
-    name = "Folder 2 name - Placemark 2.1 name",
-    number = 4,
-    description = "Placemark 2.1 description",
-    segments = mutableListOf(
-        TrackSegment(
-            number = 1,
-            points = mutableListOf(
-                Point(
-                    longitude = 12.5134921073914,
-                    latitude = 60.2558469772339,
-                    elevation = 250.379,
-                    name = "1",
-                    type = PointType.TrackPoint,
+private val track4 =
+    Track(
+        name = "Folder 2 name - Placemark 2.1 name",
+        number = 4,
+        description = "Placemark 2.1 description",
+        segments =
+            mutableListOf(
+                TrackSegment(
+                    number = 1,
+                    points =
+                        mutableListOf(
+                            Point(
+                                longitude = 12.5134921073914,
+                                latitude = 60.2558469772339,
+                                elevation = 250.379,
+                                name = "1",
+                                type = PointType.TrackPoint,
+                            ),
+                            Point(
+                                longitude = 12.5064325332642,
+                                latitude = 60.2617907524109,
+                                elevation = 263.239,
+                                name = "10",
+                                type = PointType.TrackPoint,
+                            ),
+                        ),
                 ),
-                Point(
-                    longitude = 12.5064325332642,
-                    latitude = 60.2617907524109,
-                    elevation = 263.239,
-                    name = "10",
-                    type = PointType.TrackPoint,
-                ),
-            )
-        ),
+            ),
     )
-)
-private val track5 = Track(
-    name = "Folder 2 name - Placemark 2.2 name",
-    number = 5,
-    description = "Placemark 2.2 description",
-    segments = mutableListOf(
-        TrackSegment(
-            number = 1,
-            points = mutableListOf(
-                Point(
-                    longitude = 9.28659458644688,
-                    latitude = 61.8972507677972,
-                    elevation = 0.0,
-                    name = "1",
-                    type = PointType.TrackPoint,
+private val track5 =
+    Track(
+        name = "Folder 2 name - Placemark 2.2 name",
+        number = 5,
+        description = "Placemark 2.2 description",
+        segments =
+            mutableListOf(
+                TrackSegment(
+                    number = 1,
+                    points =
+                        mutableListOf(
+                            Point(
+                                longitude = 9.28659458644688,
+                                latitude = 61.8972507677972,
+                                elevation = 0.0,
+                                name = "1",
+                                type = PointType.TrackPoint,
+                            ),
+                            Point(
+                                longitude = 9.28915500640869,
+                                latitude = 61.8982815742493,
+                                elevation = 0.0,
+                                name = "10",
+                                type = PointType.TrackPoint,
+                            ),
+                        ),
                 ),
-                Point(
-                    longitude = 9.28915500640869,
-                    latitude = 61.8982815742493,
-                    elevation = 0.0,
-                    name = "10",
-                    type = PointType.TrackPoint,
-                ),
-            )
-        ),
+            ),
     )
-)
 
-//TODO: Test description (and name) with LF and CDATA
 class MainKtTest {
     @Test
     fun `Convert KML to GPX with no merge`() {
@@ -190,17 +210,80 @@ class MainKtTest {
         evaluateTrack(root, track5, trackNo = 4, numSegments = 1)
     }
 
-    private fun evaluateTrack(root: Root, track: Track, trackNo: Int, numSegments: Int) {
+    private fun evaluateTrack(
+        root: Root,
+        track: Track,
+        trackNo: Int,
+        numSegments: Int,
+    ) {
         assertEquals(track.name, root.tracks()[trackNo].name)
         assertEquals(track.description, root.tracks()[trackNo].description)
         assertEquals(track.number, root.tracks()[trackNo].number)
         assertEquals(numSegments, root.tracks()[trackNo].segments.size)
-        assertEquals(track.segments.first().number, root.tracks()[trackNo].segments.first().number)
-        assertEquals(track.segments.first().points.first(), root.tracks()[trackNo].segments.first().points.first())
-        assertEquals(track.segments.first().points.last(), root.tracks()[trackNo].segments.first().points.last())
-        assertEquals(track.segments.last().number, root.tracks()[trackNo].segments.last().number)
-        assertEquals(track.segments.last().points.first(), root.tracks()[trackNo].segments.last().points.first())
-        assertEquals(track.segments.last().points.last(), root.tracks()[trackNo].segments.last().points.last())
+        assertEquals(
+            track.segments.first().number,
+            root
+                .tracks()[trackNo]
+                .segments
+                .first()
+                .number,
+        )
+        assertEquals(
+            track.segments
+                .first()
+                .points
+                .first(),
+            root
+                .tracks()[trackNo]
+                .segments
+                .first()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track.segments
+                .first()
+                .points
+                .last(),
+            root
+                .tracks()[trackNo]
+                .segments
+                .first()
+                .points
+                .last(),
+        )
+        assertEquals(
+            track.segments.last().number,
+            root
+                .tracks()[trackNo]
+                .segments
+                .last()
+                .number,
+        )
+        assertEquals(
+            track.segments
+                .last()
+                .points
+                .first(),
+            root
+                .tracks()[trackNo]
+                .segments
+                .last()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track.segments
+                .last()
+                .points
+                .last(),
+            root
+                .tracks()[trackNo]
+                .segments
+                .last()
+                .points
+                .last(),
+        )
     }
 
     @Test
@@ -212,7 +295,7 @@ class MainKtTest {
                 outputPath = "build/multi-folder-merge-tracks.gpx",
                 validate = true,
                 prettify = true,
-                mergeTracks = true
+                mergeTracks = true,
             )
 
         assertEquals("Document name", root.name)
@@ -224,18 +307,134 @@ class MainKtTest {
         assertEquals(2, root.tracks()[1].segments.size)
         assertEquals("Folder 2 name", root.tracks()[1].name)
         assertNull(root.tracks()[1].description)
-        assertEquals(1, root.tracks()[0].segments.first().number)
-        assertEquals(track1.segments.first().points.first(), root.tracks()[0].segments.first().points.first())
-        assertEquals(track1.segments.first().points.last(), root.tracks()[0].segments.first().points.last())
-        assertEquals(6, root.tracks()[0].segments.last().number)
-        assertEquals(track3.segments.last().points.first(), root.tracks()[0].segments.last().points.first())
-        assertEquals(track3.segments.last().points.last(), root.tracks()[0].segments.last().points.last())
-        assertEquals(1, root.tracks()[1].segments.first().number)
-        assertEquals(track4.segments.first().points.first(), root.tracks()[1].segments.first().points.first())
-        assertEquals(track4.segments.first().points.last(), root.tracks()[1].segments.first().points.last())
-        assertEquals(2, root.tracks()[1].segments.last().number)
-        assertEquals(track5.segments.last().points.first(), root.tracks()[1].segments.last().points.first())
-        assertEquals(track5.segments.last().points.last(), root.tracks()[1].segments.last().points.last())
+        assertEquals(
+            1,
+            root
+                .tracks()[0]
+                .segments
+                .first()
+                .number,
+        )
+        assertEquals(
+            track1.segments
+                .first()
+                .points
+                .first(),
+            root
+                .tracks()[0]
+                .segments
+                .first()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track1.segments
+                .first()
+                .points
+                .last(),
+            root
+                .tracks()[0]
+                .segments
+                .first()
+                .points
+                .last(),
+        )
+        assertEquals(
+            6,
+            root
+                .tracks()[0]
+                .segments
+                .last()
+                .number,
+        )
+        assertEquals(
+            track3.segments
+                .last()
+                .points
+                .first(),
+            root
+                .tracks()[0]
+                .segments
+                .last()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track3.segments
+                .last()
+                .points
+                .last(),
+            root
+                .tracks()[0]
+                .segments
+                .last()
+                .points
+                .last(),
+        )
+        assertEquals(
+            1,
+            root
+                .tracks()[1]
+                .segments
+                .first()
+                .number,
+        )
+        assertEquals(
+            track4.segments
+                .first()
+                .points
+                .first(),
+            root
+                .tracks()[1]
+                .segments
+                .first()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track4.segments
+                .first()
+                .points
+                .last(),
+            root
+                .tracks()[1]
+                .segments
+                .first()
+                .points
+                .last(),
+        )
+        assertEquals(
+            2,
+            root
+                .tracks()[1]
+                .segments
+                .last()
+                .number,
+        )
+        assertEquals(
+            track5.segments
+                .last()
+                .points
+                .first(),
+            root
+                .tracks()[1]
+                .segments
+                .last()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track5.segments
+                .last()
+                .points
+                .last(),
+            root
+                .tracks()[1]
+                .segments
+                .last()
+                .points
+                .last(),
+        )
     }
 
     @Test
@@ -247,7 +446,7 @@ class MainKtTest {
                 outputPath = "build/multi-folder-merge-folders.gpx",
                 validate = true,
                 prettify = true,
-                mergeFolders = true
+                mergeFolders = true,
             )
 
         assertEquals("Document name", root.name)
@@ -257,24 +456,83 @@ class MainKtTest {
         assertEquals("Document name", root.tracks()[0].name)
         assertEquals("Document description", root.tracks()[0].description)
         assertEquals(1, root.tracks()[0].number)
-        assertEquals(1, root.tracks()[0].segments.first().number)
-        assertEquals(track1.segments.first().points.first(), root.tracks()[0].segments.first().points.first())
-        assertEquals(track1.segments.first().points.last(), root.tracks()[0].segments.first().points.last())
-        assertEquals(8, root.tracks()[0].segments.last().number)
-        assertEquals(track5.segments.last().points.first(), root.tracks()[0].segments.last().points.first())
-        assertEquals(track5.segments.last().points.last(), root.tracks()[0].segments.last().points.last())
+        assertEquals(
+            1,
+            root
+                .tracks()[0]
+                .segments
+                .first()
+                .number,
+        )
+        assertEquals(
+            track1.segments
+                .first()
+                .points
+                .first(),
+            root
+                .tracks()[0]
+                .segments
+                .first()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track1.segments
+                .first()
+                .points
+                .last(),
+            root
+                .tracks()[0]
+                .segments
+                .first()
+                .points
+                .last(),
+        )
+        assertEquals(
+            8,
+            root
+                .tracks()[0]
+                .segments
+                .last()
+                .number,
+        )
+        assertEquals(
+            track5.segments
+                .last()
+                .points
+                .first(),
+            root
+                .tracks()[0]
+                .segments
+                .last()
+                .points
+                .first(),
+        )
+        assertEquals(
+            track5.segments
+                .last()
+                .points
+                .last(),
+            root
+                .tracks()[0]
+                .segments
+                .last()
+                .points
+                .last(),
+        )
     }
 
     @Test
     fun `Convert KML to GPX with waypoints`() {
         val kml = {}.javaClass.getResource("/waypoints.kml")?.openStream()!!
-        val root = convert(
-            kml = kml,
-            outputPath = "build/waypoints.gpx",
-            addWaypoints = true,
-            validate = true,
-            prettify = true
-        )
+        val root =
+            convert(
+                kml = kml,
+                outputPath = "build/waypoints.gpx",
+                addWaypoints = true,
+                validate = true,
+                prettify = true,
+            )
         val firstPoint =
             Point(
                 longitude = 9.4441693,
@@ -295,5 +553,43 @@ class MainKtTest {
         assertEquals(12, root.waypoints().size)
         assertEquals(firstPoint, root.waypoints().first())
         assertEquals(lastPoint, root.waypoints().last())
+    }
+
+    @Test
+    fun `Convert KML to GPX with CDATA and line break`() {
+        val kml = {}.javaClass.getResource("/cdata.kml")?.openStream()!!
+        val actual =
+            convert(
+                kml = kml,
+                outputPath = "build/cdata.gpx",
+                addWaypoints = true,
+                validate = true,
+                prettify = true,
+            )
+
+        val gpx =
+            """ 
+            |<?xml version="1.0" standalone="yes"?>
+            |<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="kml2gpx" version="1.1"
+            |     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            |     xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+            |    <metadata>
+            |        <name><![CDATA[<br><strong>document-name</strong>]]></name>
+            |        <desc><![CDATA[<br><strong>document-description</strong>]]></desc>
+            |    </metadata>
+            |    <wpt lat="59.7678652" lon="9.4441693">
+            |    <ele>0.0</ele>
+            |    <name><![CDATA[<br><strong>folder-name</strong> - <br><strong>placemark-name</strong>]]></name>
+            |</wpt>
+            |    <trk>
+            |    <name><![CDATA[<br><strong>folder-name</strong> - <br><strong>placemark-name</strong>]]></name>
+            |    <desc><![CDATA[<br><strong>placemark-description</strong>]]></desc>
+            |    <number>1</number>
+            |    
+            |</trk>
+            |</gpx>
+            """.trimMargin()
+
+        assertEquals(gpx, actual.toGpx())
     }
 }

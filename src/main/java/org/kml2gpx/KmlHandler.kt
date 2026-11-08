@@ -1,6 +1,10 @@
 package org.kml2gpx
 
-import org.kml2gpx.model.*
+import org.kml2gpx.model.Point
+import org.kml2gpx.model.PointType
+import org.kml2gpx.model.Root
+import org.kml2gpx.model.Track
+import org.kml2gpx.model.TrackSegment
 import org.xml.sax.Attributes
 import org.xml.sax.helpers.DefaultHandler
 
@@ -58,20 +62,38 @@ class KmlHandler(
         attributes: Attributes?,
     ) {
         when (qName) {
-            DOCUMENT -> tags.add(Tag.DOCUMENT)
+            DOCUMENT -> {
+                tags.add(Tag.DOCUMENT)
+            }
+
             NAME -> {
                 when (tags.last()) {
-                    Tag.DOCUMENT -> tags.add(Tag.DOCUMENT_NAME)
-                    Tag.DOCUMENT_FOLDER -> tags.add(Tag.DOCUMENT_FOLDER_NAME)
-                    Tag.DOCUMENT_FOLDER_PLACEMARK -> tags.add(Tag.DOCUMENT_FOLDER_PLACEMARK_NAME)
+                    Tag.DOCUMENT -> {
+                        tags.add(Tag.DOCUMENT_NAME)
+                    }
+
+                    Tag.DOCUMENT_FOLDER -> {
+                        tags.add(Tag.DOCUMENT_FOLDER_NAME)
+                    }
+
+                    Tag.DOCUMENT_FOLDER_PLACEMARK -> {
+                        tags.add(Tag.DOCUMENT_FOLDER_PLACEMARK_NAME)
+                    }
+
                     else -> {}
                 }
             }
 
             DESCRIPTION -> {
                 when (tags.last()) {
-                    Tag.DOCUMENT -> tags.add(Tag.DOCUMENT_DESCRIPTION)
-                    Tag.DOCUMENT_FOLDER_PLACEMARK -> tags.add(Tag.DOCUMENT_FOLDER_PLACEMARK_DESCRIPTION)
+                    Tag.DOCUMENT -> {
+                        tags.add(Tag.DOCUMENT_DESCRIPTION)
+                    }
+
+                    Tag.DOCUMENT_FOLDER_PLACEMARK -> {
+                        tags.add(Tag.DOCUMENT_FOLDER_PLACEMARK_DESCRIPTION)
+                    }
+
                     else -> {}
                 }
             }
@@ -110,11 +132,12 @@ class KmlHandler(
                 }
             }
 
-            POINT ->
+            POINT -> {
                 addIf(
                     ifCurrent = Tag.DOCUMENT_FOLDER_PLACEMARK,
                     add = Tag.DOCUMENT_FOLDER_PLACEMARK_POINT,
                 )
+            }
 
             COORDINATES -> {
                 addIf(
@@ -179,10 +202,11 @@ class KmlHandler(
             Tag.DOCUMENT_FOLDER_PLACEMARK_LINE_STRING_COORDINATES -> {
                 val pointString = substring(ch, start, length)
                 if (!pointString.isNullOrBlank()) {
-                    val (points, partial) = points(
-                        coordinateString = partialPointString + pointString,
-                        type = PointType.TrackPoint
-                    )
+                    val (points, partial) =
+                        points(
+                            coordinateString = partialPointString + pointString,
+                            type = PointType.TrackPoint,
+                        )
                     partialPointString = partial ?: ""
                     currentSegment?.addPoints(points)
                 }
@@ -192,11 +216,12 @@ class KmlHandler(
                 if (addWaypoints) {
                     val pointString = substring(ch, start, length)
                     if (!pointString.isNullOrBlank()) {
-                        val (points, _) = points(
-                            coordinateString = pointString,
-                            name = currentTrack?.name,
-                            type = PointType.WayPoint
-                        )
+                        val (points, _) =
+                            points(
+                                coordinateString = pointString,
+                                name = currentTrack?.name,
+                                type = PointType.WayPoint,
+                            )
                         root.addWaypoints(points)
                     }
                 }
@@ -208,7 +233,11 @@ class KmlHandler(
         }
     }
 
-    private fun points(coordinateString: String?, name: String? = null, type: PointType): Pair<List<Point>, String?> {
+    private fun points(
+        coordinateString: String?,
+        name: String? = null,
+        type: PointType,
+    ): Pair<List<Point>, String?> {
         var partial: String? = null
         val split =
             coordinateString
@@ -221,8 +250,7 @@ class KmlHandler(
                 ?.stream()
                 ?.map {
                     Point.fromString(pointString = it, name = name ?: currentPoint++.toString(), type = type)
-                }
-                ?.filter { !it.isEmpty }
+                }?.filter { !it.isEmpty }
                 ?.map { it.get() }
                 ?.toList() ?: emptyList()
 
@@ -255,12 +283,20 @@ class KmlHandler(
         qName: String?,
     ) {
         when (qName) {
-            NAME -> removeLastIf(Tag.DOCUMENT_NAME, Tag.DOCUMENT_FOLDER_NAME, Tag.DOCUMENT_FOLDER_PLACEMARK_NAME)
-            DESCRIPTION -> removeLastIf(Tag.DOCUMENT_DESCRIPTION, Tag.DOCUMENT_FOLDER_PLACEMARK_DESCRIPTION)
-            COORDINATES -> removeLastIf(
-                Tag.DOCUMENT_FOLDER_PLACEMARK_LINE_STRING_COORDINATES,
-                Tag.DOCUMENT_FOLDER_PLACEMARK_POINT_COORDINATES
-            )
+            NAME -> {
+                removeLastIf(Tag.DOCUMENT_NAME, Tag.DOCUMENT_FOLDER_NAME, Tag.DOCUMENT_FOLDER_PLACEMARK_NAME)
+            }
+
+            DESCRIPTION -> {
+                removeLastIf(Tag.DOCUMENT_DESCRIPTION, Tag.DOCUMENT_FOLDER_PLACEMARK_DESCRIPTION)
+            }
+
+            COORDINATES -> {
+                removeLastIf(
+                    Tag.DOCUMENT_FOLDER_PLACEMARK_LINE_STRING_COORDINATES,
+                    Tag.DOCUMENT_FOLDER_PLACEMARK_POINT_COORDINATES,
+                )
+            }
 
             LINE_STRING -> {
                 if (tags.last() == Tag.DOCUMENT_FOLDER_PLACEMARK_LINE_STRING) {
@@ -272,8 +308,11 @@ class KmlHandler(
                 }
             }
 
-            POINT -> removeLastIf(Tag.DOCUMENT_FOLDER_PLACEMARK_POINT)
-            PLACEMARK -> {  // End of track
+            POINT -> {
+                removeLastIf(Tag.DOCUMENT_FOLDER_PLACEMARK_POINT)
+            }
+
+            PLACEMARK -> { // End of track
                 if (tags.last() == Tag.DOCUMENT_FOLDER_PLACEMARK) {
                     tags.removeLast()
                     if (!mergeTracks && !mergeFolders && currentTrack != null) {
@@ -316,21 +355,21 @@ class KmlHandler(
 }
 
 // No merge:
-//----------
+// ----------
 // GPX -> nothing
 // Folder -> track name prefix
 // Placemark -> track
 // LineString -> Segment
 
 // Merge tracks:
-//--------------
+// --------------
 // GPX -> nothing
 // Folder -> track
 // Placemark -> nothing
 // LineString -> segment
 
 // Merge folders:
-//---------------
+// ---------------
 // GPX -> track
 // Folder -> nothing
 // Placemark -> nothing

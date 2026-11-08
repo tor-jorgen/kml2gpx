@@ -1,23 +1,30 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+val kml2gpxVersion = project.findProperty("kml2gpxVersion") as String
+val javaLanguageVersion = project.findProperty("javaLanguageVersion") as String
 
 plugins {
-    id("java")
     id("com.gradleup.shadow")
     kotlin("jvm")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 group = "org.kml2gpx"
-version = "1.0.1"
+version = kml2gpxVersion
 
 repositories {
     mavenCentral()
 }
 
+val dom4jVersion = "2.2.0"
+val junitVersion = "6.1.3"
+
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("org.dom4j:dom4j:2.1.4")
-    testImplementation(platform("org.junit:junit-bom:5.10.3"))
+    implementation("org.dom4j:dom4j:$dom4jVersion")
+
+    testImplementation(platform("org.junit:junit-bom:$junitVersion"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.test {
@@ -25,21 +32,21 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(javaLanguageVersion))
+    }
 }
 
-tasks {
-    named<ShadowJar>("shadowJar") {
-        archiveBaseName.set("kml2gpx")
-        mergeServiceFiles()
-        manifest {
-            attributes(mapOf("Main-Class" to "org.kml2gpx.MainKt"))
-        }
+tasks.shadowJar {
+    mergeServiceFiles()
+    manifest {
+        attributes(mapOf("Main-Class" to "org.kml2gpx.MainKt"))
     }
 }
 
 tasks {
     build {
+        // Generate fatjar on build
         dependsOn(shadowJar)
     }
 }
